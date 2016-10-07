@@ -1,0 +1,133 @@
+<html lang="pt" ng-app="sge">
+<head>
+    <% include ../partes/head %>
+<script>
+  $( function() {
+  $( "#datepicker" ).datepicker({
+       yearRange: '1900:2050',
+       changeMonth: true,
+       changeYear: true,
+       altFormat: "yy-dd-mm",
+       altField: "#alt-date"
+  });
+  } );
+</script>
+<!-- angular -->
+<script>
+  angular.module("sge",[]);
+  angular.module("sge").controller("sgeCtrl", function ($scope) {
+    $scope.app="olá mundo";
+      $scope.questl = [
+        {cod_quest:1, materia: "mat", enunciado:"41+ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss1"},
+        {cod_quest:2, materia: "mat", enunciado:"4+1"},
+        {cod_quest:3, materia: "mat", enunciado:"1+1"},
+        {cod_quest:4, materia: "mat2", enunciado:"piR²"},
+        {cod_quest:5, materia: "mat", enunciado:"441+1"}
+      ];
+    $scope.questps = [
+      {cod_quest:7, materia: "mat2", enunciado:"2piR"}
+    ];
+    $scope.addQToP = function (){
+        //$scope.questps.push(cod_quest, materia, enunciado);
+        //console.log(cod_quest,materia,enunciado);
+    };
+  });
+</script>
+
+</head>
+<body ng-controller="sgeCtrl">
+    <div class="all">
+
+        <div class="topo row  ">
+                <% include ../partes/topmenu.ejs %>
+        </div>
+          <div class="row">
+              <div class=" col-xs-2 col-sm-2 col-md-2 col-lg-2 fixed">
+                  <% include ../partes/sidemenu.ejs %>
+              </div>
+        <div class="container-fluid">
+
+          <div class="content col-xs-10 col-sm-10 col-md-10 col-lg-10 ">
+            <H3>Cadastro de Provas</H3>
+            <br>
+            <div class="" style="float: left; position: relative;">
+
+              <form class="form-inline"  method="post" name="cadastroProvas">
+
+                <input type="text" name="autor" value="" placeholder="Autor" class="form-control" style="width:300px;">&nbsp&nbsp
+
+                <select class="form-control" name="disciplina" style="width:300px;">
+                  <option disabled selected>Disciplina</option>
+                </select><br><br>
+
+                <select class="form-control" name="serie" style="width:300px;">
+                  <option disabled selected>Série</option>
+                  <option>1º ano</option>
+                  <option>2º ano</option>
+                  <option>3º ano</option>
+                </select>&nbsp&nbsp
+
+                <input type="text" name="nome" value="" placeholder="Nome da Prova" class="form-control" style="width:300px;"><br><br>
+
+  <!-----------><hr style="border: 0.3px solid #DDD; width:610px; margin-left:0px;">
+                <H4>Questões</H4><br>
+                <select class="form-control" name="materia" style="width:300px;">
+                  <option disabled selected>Matéria</option>
+                </select><br><br>
+                <table class="table" style="width:610px;">
+                  <thead class="thead-inverse">
+                    <tr>
+                      <th>Matéria</th>
+                      <th>Enunciado</th>
+                      <th>Adicionar</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="quest in questl">
+                      <td ng-model="quest.materia">{{quest.materia}}</td>
+                      <td ng-model="quest.enunciado">{{quest.enunciado}}</td>
+                      <td width="10px"><button class="btn btn-primary btn-block" >Adicionar</button></td>
+                      <!--td>Cocô no morro rola ou não rola?</td>
+                      <td class="celulasCB"><input type="checkbox" name="name" value=""></td-->
+                    </tr>
+                  </tbody>
+                </table>
+
+              </form>
+            </div>
+
+            <div class="" style="position: relative; border-left:1px solid #DDD; margin-left:50px; float:left; height:100%; text-align: center;">
+              <table class="table" style="width:750px; margin-left: 50px;">
+                <thead class="thead-inverse">
+                  <tr>
+                    <th class="celulasCB">#</th>
+                    <th class="celulasCB">Matéria</th>
+                    <th>Enunciado</th>
+                    <th class="celulasCB">Remover</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="questp in questps">
+                    <td>{{questps.indexOf(questp)}}</td>
+                    <td>{{questp.materia}}</td>
+                    <td>{{questp.enunciado}}</td>
+                    <td width="10px"><button class="btn btn-danger btn-block" ng-click="">Remover</button></td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" name="cadastrar" class="btn btn-default" style="position:relative; align:center;">Cadastrar Prova</button>
+            </div>
+
+          </div>
+
+          <div class="footer">
+            <footer>
+              <% include ../partes/footer %>
+            </footer>
+          </div>
+        </div>
+
+      </div>
+    </body>
+
+    </html>

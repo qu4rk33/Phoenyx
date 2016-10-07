@@ -1,0 +1,67 @@
+ <!DOCTYPE html>
+<html>
+  <head>
+        <% include ../partes/head %>
+<script >
+</script>
+
+  </head>
+  <body style="background-color:#4682B4">
+   <style >
+            body        { padding-top:100px; }
+            .all        { width: 370px; margin-left: -30px; border-radius: 2px;
+                        -webkit-box-shadow: 0px 10px 78px 13px rgba(0,0,0,0.23);
+                        -moz-box-shadow: 0px 10px 78px 13px rgba(0,0,0,0.23);
+                        box-shadow: 0px 10px 78px 13px rgba(0,0,0,0.23);
+                         }
+            #formLog    { margin-left: 35px;  }
+   </style>
+
+
+<div class="container">
+
+<div class="col-sm-6 col-sm-offset-4">
+    <div class="all"  style="background-color:#FEFEFE">
+        <div class="contlog">
+            <div class="loginLogo">
+                    <img alt="CP@2" class="prpLogo" src="http://3.bp.blogspot.com/-Vu_Eh3wGFFQ/VZExgiSzgrI/AAAAAAAACVw/kArVYwT5p6M/s1600/logo_cp2.png" >
+            </div>
+
+
+            <% if (message.length > 0) { %>
+                <div class="alert alert-info" style="text-align: center;"><%= message %></div>
+            <% } %>
+
+            <!-- LOGIN FORM -->
+            <form action="/" method="post" id="formLog" name="formLog" >
+                <div class="form-group">
+                    <input type="text" class="form-control txtBox"  name="matricula"  placeholder="Matrícula" required="required" autofocus/>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input type="password" class="form-control txtBox"  name="senha" placeholder="Senha"    required="required"/>
+                </div>
+                <br>
+                <div class="form-group">
+                     <button type="submit"   id="bt1" class="btn btn-primary  form-control ">Entrar</button>
+                 </div>
+            </form>
+             <br>
+             <div class="form-group">
+          <a href="/cadastro" id="cadlink"  class="animsition-link"
+ data-animsition-in-class="fade-in"
+  data-animsition-in-duration="1000"
+  data-animsition-out-class="fade-out"
+  data-animsition-out-duration="800"
+           >Ainda não é cadastrado? cadastre-se</a>
+
+             </div>
+            <hr>
+        </div>
+   </div>
+</div>
+
+</div>
+
+  </body>
+</html>

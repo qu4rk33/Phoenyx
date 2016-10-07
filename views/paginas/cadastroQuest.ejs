@@ -1,0 +1,125 @@
+<html lang="pt">
+<head>
+    <% include ../partes/head %>
+    <script>
+
+
+    $( function() {
+      $("#disciplina").change(function(){
+        console.log("hapiness");
+               $.post("/pesqMat",function(data){
+                  $("#materia").empty();
+                    $("#materia").append($("<option disable selected />").val('Materia').text('Materia'));
+                 for(var i = 0; i < data.length; i++) {
+                  //  $('#autor select').append('<option value='+i+'>'+data[i]+'</option>');
+                   $("#materia").append($("<option />").val(data[i]).text(data[i]));
+                  console.log(data[i]);
+                 }
+               });
+      });
+
+      $("#autor").change(function(){
+
+               $.post("/pesqDisc",function(data){
+                  $("#disciplina").empty();
+                  $("#disciplina").append($("<option disable selected />").val('Disciplina').text('Disciplina'));
+
+                 for(var i = 0; i < data.length; i++) {
+                  //  $('#autor select').append('<option value='+i+'>'+data[i]+'</option>');
+                   $("#disciplina").append($("<option />").val(data[i]).text(data[i]));
+                  console.log(data[i]);
+                 }
+               });
+      });
+    } );
+
+    </script>
+</head>
+<body>
+    <div class="all">
+
+        <div class="topo row  ">
+                <% include ../partes/topmenu.ejs %>
+        </div>
+          <div class="row">
+              <div class=" col-xs-2 col-sm-2 col-md-2 col-lg-2 fixed">
+                  <% include ../partes/sidemenu.ejs %>
+              </div>
+        <div class="container-fluid">
+
+          <div class="content col-xs-10 col-sm-10 col-md-10 col-lg-10 ">
+            <H3>Cadastro de questões</H3>
+
+            <% if (message.length > 0) { %>
+                <div class="alert alert-info" style="text-align: center;"><%= message %></div>
+            <% } %>
+
+            <br>
+
+            <form class="form-inline" action="/cadastroQuest" method="post" name="cadastroQuestao">
+
+
+              <select class="form-control" name="autor"  id="autor" style="width:300px;">
+                <option disabled selected>Autor</option>
+
+                <option >   <%= user %>    </option>
+                <option>Outro</option>
+              </select>&nbsp&nbsp
+
+              <select class="form-control" name="visibilidade" style="width:300px;">
+                <option disabled selected>Visibilidade</option>
+                <option>Privada</option>
+                <option>Pública</option>
+              </select><br><br>
+
+              <select class="form-control" name="disciplina"  id="disciplina" style="width:300px;">
+                <option disabled selected>Disciplina</option>
+              </select>&nbsp&nbsp
+
+              <select class="form-control" name="materia" id="materia" style="width:300px;">
+                <option disabled selected>Materia</option>
+              </select><br><br>
+
+              <select class="form-control" name="serie" style="width:300px;">
+                <option disabled selected>Série</option>
+                <option>1º ano</option>
+                <option>2º ano</option>
+                <option>3º ano</option>
+              </select>&nbsp&nbsp
+
+              <input type="text" name="criacao" value="" placeholder="Ano de criação" class="form-control" style="width:300px;"><br><br>
+
+              <select class="form-control" name="tipo" onchange="carregaCampos()" style="width:300px;">
+                <option disabled selected>Tipo</option>
+                <option>Discursiva</option>
+                <option>Objetiva</option>
+              </select>&nbsp&nbsp
+
+              <select class="form-control" name="nivel" style="width:300px;">
+                <option disabled selected>Nível</option>
+                <option>Básica</option>
+                <option>Mediana</option>
+                <option>Avançada</option>
+              </select><br><br>
+
+              <textarea name="enunciado" rows="10" class="form-control" style="resize: none; width:610px;" placeholder="Enunciado"></textarea><br><br>
+
+              <div class="" id="dadosQuest" style="text-align:center; margin-left:0px;width:610px;">
+
+              </div>
+
+            </form>
+
+          </div>
+
+          <div class="footer">
+            <footer>
+                <% include ../partes/footer %>
+            </footer>
+          </div>
+      </div>
+
+    </div>
+</body>
+
+</html>

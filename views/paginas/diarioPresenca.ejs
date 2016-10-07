@@ -1,0 +1,87 @@
+<html lang="pt">
+<head>
+    <% include ../partes/head %>
+
+       <script>
+ $( function() {
+  $( "#datepicker" ).datepicker({
+        yearRange: '1900:2050',
+    changeMonth: true,
+    changeYear: true,
+    altFormat: "yy-mm-dd",
+    altField: "#alt-date"
+  });
+} );
+</script>
+</head>
+<body>
+    <div class="all">
+
+        <div class="topo row  ">
+                <% include ../partes/topmenu.ejs %>
+        </div>
+          <div class="row">
+              <div class=" col-xs-2 col-sm-2 col-md-2 col-lg-2 fixed">
+                  <% include ../partes/sidemenu.ejs %>
+              </div>
+        <div class="container-fluid">
+
+          <div class="content col-xs-10 col-sm-10 col-md-10 col-lg-10 ">
+            <H3>Cadastro de questões</H3>
+            <br>
+
+            <form class="form-inline" action="" method="post" name="cadastroQuestao">
+
+              <input type="text" name="prof" value="" class="form-control" style="width:300px;">&nbsp&nbsp
+
+              <input type="text" id="datepicker" class="form-control" name="dataAula" placeholder="Data" style="width: 300px;">
+              <input type="text"  id="alt-date"  name="data" style="visibility: hidden "><br><br>
+
+              <select class="form-control" name="turma" style="width:300px;">
+                <option disabled selected>Turma</option>
+              </select>&nbsp&nbsp
+
+              <select class="form-control" name="disciplina" onclick="campoPreenchido('cadastroQuestao', 'autor', 'Informe o autor da questão!')" style="width:300px;">
+                <option disabled selected>Disciplina</option>
+              </select><br><br>
+
+              <input type="text" name="obs" value="" class="form-control" style="width:610px;" placeholder="Observações sobre a aula"><br><br>
+
+
+              <div class="" id="vemTabela" style="width:610px; text-align: center;">
+                <table class="table" style="width:610px;">
+                  <thead class="thead-inverse">
+                    <tr>
+                      <th>#</th>
+                      <th>Aluno</th>
+                      <th>Presente</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>1</th>
+                      <td>Juca de Alcântará</td>
+                      <td class="celulasCB"><input type="checkbox" name="name" value=""></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <button type="button" name="cadastrar" class="btn btn-default">Enviar</button>
+              </div>
+
+
+
+            </form>
+
+          </div>
+
+          <div class="footer">
+            <footer>
+                <% include ../partes/footer %>
+            </footer>
+          </div>
+      </div>
+
+    </div>
+</body>
+
+</html>

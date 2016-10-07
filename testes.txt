@@ -1,0 +1,19 @@
+
+   function (req, res) {
+    if (req.body.change == "update") { //if update btn is clicked
+        updateModule.saveChanges(req.body, function (err) { //call update module
+            if (err) {
+                //if error
+                req.flash("msg","Error Occured");
+                res.locals.messages = req.flash();
+                res.render('edit', { title: 'myApp'});
+            } else {
+                //on success
+                req.flash("msg", "Data updated successfully");
+                res.locals.messages = req.flash();
+                res.render('index', { 'title': 'myApp'});
+             }
+
+        });
+    }
+});
